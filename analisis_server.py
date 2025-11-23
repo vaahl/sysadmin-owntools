@@ -27,14 +27,17 @@ def check_disk_usage(path="/"):
 def check_active_users():
     print("\n--- Usuarios Conectados ---")
     # Ejecutamos un comando de sistema y leemos la salida
-    users = os.popen('who').read()
 
     try:
+        users = os.popen('who').read()
+
 
         if users:
             print(users)
-    except:
-        print("No hay usuarios humanos conectados.")
+        else:
+            print("No hay usuarios humanos conectados.")
+    except Exception as e:
+        print(f'ERROR: Fallo en la verificacion de personas conectadas. Revisar: {e}')
 
 # 3. Función principal que orquesta todo y guarda un log
 def run_audit():
